@@ -38,9 +38,6 @@ public class Ex3_Output {
 		System.out.printf("평균: %-10.2f점\n",avg);// 열자리의 왼쪽으로 붙이고 오른쪽에 공백
 		
 		
-		
-		
-		
 	}
 
 }
