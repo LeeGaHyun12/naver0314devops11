@@ -19,23 +19,25 @@ public class Ex7_Munje {
 		
 		Scanner sc=new Scanner(System.in);
 		int gibon, family;
-		int money=0;
+		int totpay=0;
 		String name;
 		
-		System.out.println("이름, 기본급, 가족수를 입력하시오: ");
+		System.out.println("이름은? ");
 		name=sc.nextLine();
+		System.out.println("기본급은? ");
 		gibon = sc.nextInt();
+		System.out.println("가족수는? ");
 		family=sc.nextInt();
 		
-		
 		if(family>=3) {
-			money=gibon+(family*50000);
+			totpay=gibon+(family*50000);
 		} else if(family<3) {
-			money=gibon+30000;
+			totpay=gibon+30000;
 		} 
+	    System.out.println("-------결과-------");
 		System.out.println("이름: "+name);
 		System.out.println("기본급: "+gibon);
-		System.out.println("실수령액: "+money);
+		System.out.println("실수령액: "+totpay);
 		
 	}
 
