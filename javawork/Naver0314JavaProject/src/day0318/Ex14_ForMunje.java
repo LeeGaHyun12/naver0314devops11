@@ -27,14 +27,20 @@ public class Ex14_ForMunje {
 
 		int score, count=0, sum=0;
 
+		
 		for(int i=1; i<=5;i++) {
 			System.out.println("점수는? ");
 			score=sc.nextInt();
-			sum+=score;
-
-			if(score>0) {
+			
+			if(score>100||score<=0) {
+				continue;
+			} else {
 				count++;
 			}
+			
+			sum+=score;
+			
+			
 		}
 		System.out.println("입력한 점수 갯수: "+count);
 		System.out.println("총 합계: "+sum);
