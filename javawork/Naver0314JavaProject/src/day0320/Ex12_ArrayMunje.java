@@ -62,6 +62,7 @@ public class Ex12_ArrayMunje {
 					rank[i]++;
 			}
 		}
+		
 		//출력
 		System.out.println("=".repeat(55));
 		System.out.println("번호\t이름\t국어\t영어\t총점\t등수");
