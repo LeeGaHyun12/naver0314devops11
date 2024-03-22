@@ -13,20 +13,18 @@ public class Book199_9 {
 		Scanner sc=new Scanner(System.in);
 		int n,student = 0,max_score=0,avg_score=0;
 		int []scores = null;
-		int sum = 0,m = 0;
+		int sum = 0;
 
 
 		while(true) {
 			System.out.println("-----------------------------------------------");
-			System.out.println("1.학생수 | 2.점수입력 | 3.점수리스트 | 4.분석 | 5.종료 |");
+			System.out.println("1.학생수 | 2.점수입력 | 3.점수리스트 | 4.분석 | 5.종료  ");
 			System.out.println("-----------------------------------------------");
 
 			System.out.println("선택 > ");
 			n=sc.nextInt();
 
-
-
-
+			
 			if (n==1) {
 
 				System.out.print("학생수 > ");
@@ -56,7 +54,7 @@ public class Book199_9 {
 
 				for(int i=0;i<student;i++) {
 					sum+=scores[i];
-					if(m<scores[i])
+					if(max_score<scores[i])
 						max_score=scores[i];
 				}
 
@@ -66,6 +64,7 @@ public class Book199_9 {
 
 			}
 			else {
+			    System.out.println("** 프로그램을 종료합니다 **"); 
 				break;
 			}
 
