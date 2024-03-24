@@ -1,7 +1,7 @@
 package study;
 import java.util.Scanner;
 
-public class Test_01 {
+public class Test_01_Array {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
