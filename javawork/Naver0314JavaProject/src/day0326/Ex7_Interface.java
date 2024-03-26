@@ -1,36 +1,70 @@
 package day0326;
 
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
-
-import javax.swing.JFrame;
-
-class NewFrame extends JFrame{
-	public NewFrame() {
-		super("hello");
-		this.setLocation(300,100); //시작위치 
-		this.setSize(300,300); //너비,높이 
-		//윈도우 이벤트 추가 - 인터페이스를 요구하는 인자에 익명 내부 클래스 형태로 구현
-		this.addWindowListener(new WindowAdapter() {
-			@Override
-			public void windowClosing(WindowEvent e) {
-				// TODO Auto-generated method stub
-				super.windowClosing(e);
-				System.out.println("윈도우를 종료합니다");
-			}
-		});
-		//프레임 보이게 하기 
-		this.setVisible(true);
-	}
+interface StudyInter
+{
+	public void javaStudy();
+	public void springStudy();
 }
 
+interface PlayInter
+{
+	public void run();
+	public void game();
+}
 
+class MyStudy implements StudyInter
+{
+
+	@Override
+	public void javaStudy() {
+		// TODO Auto-generated method stub
+		System.out.println("자바 스터디");
+	}
+
+	@Override
+	public void springStudy() {
+		// TODO Auto-generated method stub
+		System.out.println("스프링스터디");
+	}
+	
+}
+
+class MyPlay implements PlayInter
+{
+
+	@Override
+	public void run() {
+		// TODO Auto-generated method stub
+		System.out.println("달리기");
+	}
+
+	@Override
+	public void game() {
+		// TODO Auto-generated method stub
+		System.out.println("게임");
+	}
+	
+}
 
 public class Ex7_Interface {
 
+	static public void study(StudyInter s)
+	{
+		s.javaStudy();
+		s.springStudy();
+	}
+	
+	static public void play(PlayInter p)
+	{
+		p.run();
+		p.game();
+	}
+	
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		NewFrame f=new NewFrame();
+		//위의 두 static 메서드를 호출해보세요
+		study(new MyStudy());
+		play(new MyPlay());
 	}
 
 }

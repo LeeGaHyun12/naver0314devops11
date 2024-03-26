@@ -21,19 +21,32 @@ public class Ex17_ExceptionMunje {
 	static public void readScore() {
 		BufferedReader br=null;
 		FileReader fr=null;
-		
+		int sum=0,count=0;
+		double avg;
+		int scoreLine = 0;
 		try {
+			
 			fr=new FileReader(FILENAME);
 			System.out.println("** score 파일을 읽습니다 **");
-			
+			br=new BufferedReader(fr);
+		
 			while(true) {
 				//파일의 내용을 한 줄씩 읽어온다 
 				String line=br.readLine();
-				int scoreLine=Integer.parseInt(line);
+				try {
+					scoreLine=Integer.parseInt(line);
+					
+					
+				}catch(NumberFormatException e){
+					count--;
+					sum-=scoreLine;
+				}
 				//만약 더이상 데이터가 없을 경우 null값이 반환된다 
+				sum+=scoreLine;
+				count++;
 				if(line==null)
 					break;
-				System.out.println(scoreLine);
+				
 			}
 		} catch (FileNotFoundException e) {
 			// TODO: handle exception
@@ -41,20 +54,26 @@ public class Ex17_ExceptionMunje {
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}finally {
+		} finally {
 			try {
+				avg=sum/(double)count;
+			
+				System.out.println("갯수: "+count);
+				System.out.println("총점수: "+sum);
+				System.out.printf("평균: %.1f",avg); 
 				br.close(); // 순서상 나중에 열린 자원을 먼저 닫아야 오류 안 생김. 
 				fr.close();
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
-			}
+			} 
 		}
 		
 	}
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		readScore();
+		
 	}
 
 }
