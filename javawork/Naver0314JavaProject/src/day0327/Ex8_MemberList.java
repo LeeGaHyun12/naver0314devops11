@@ -21,11 +21,11 @@ public class Ex8_MemberList {
 	public void memberReadFile() {
 		BufferedReader br=null;
 		FileReader fr=null;
-		
+
 		try {
 			fr=new FileReader(FILENAME);
 			br=new BufferedReader(fr);
-			
+
 			while(true)
 			{
 				String s=br.readLine();
@@ -36,12 +36,12 @@ public class Ex8_MemberList {
 				String[] a=s.split(",");
 				//MemberDto 생성후 setter로 데이터 넣기
 				MemberDto dto=new MemberDto();
-				
+
 				dto.setName(a[0]);
 				dto.setHp(a[1]);
 				dto.setAddr(a[2]);
 				dto.setBlood(a[3]);
-				
+
 				//list에 추가 
 				list.add(dto);
 			}
@@ -142,8 +142,8 @@ public class Ex8_MemberList {
 			System.out.println(name+"님의 정보를 삭제하였습니");
 		else
 			System.out.println(name+"님은 명단에 없습니다");
-		
-		
+
+
 	}
 	//전체 멤버 출력 
 	public void writeMember() {
@@ -156,7 +156,7 @@ public class Ex8_MemberList {
 		for(int i=0;i<list.size();i++) {
 			MemberDto dto=list.get(i);
 			System.out.println(i+1+"\t"+dto.getName()+"\t"+dto.getHp()+"\t"
-			+dto.getAddr()+"\t"+dto.getBlood().toUpperCase()+"");
+					+dto.getAddr()+"\t"+dto.getBlood().toUpperCase()+"");
 
 		}
 		System.out.println("=".repeat(50));
@@ -179,8 +179,31 @@ public class Ex8_MemberList {
 		 * ---------------
 		 * 
 		 */
-		
-		
+		boolean f=false;
+		int searchIndex=0;
+		String searchName;
+
+		System.out.println("검색할 이름을 입력하세요");
+		searchName=sc.nextLine();
+
+
+		for(MemberDto dto:list)
+		{
+			f=true;
+
+			if(dto.getName().startsWith(searchName))
+			{
+				System.out.println(dto.getName()+"\n"+dto.getHp()+"\n"+dto.getAddr()+"\n"+dto.getBlood().toUpperCase());
+				System.out.println("-".repeat(40));
+			
+			}
+
+		}
+		if(!f)
+			System.out.println(searchName+"님은 멤버 명단에 없습니다");
+
+
+
 	}
 	//전화번호로 검색 
 	public void searchPhone() {
@@ -190,6 +213,29 @@ public class Ex8_MemberList {
 		 * 
 		 * 
 		 */
+		boolean f=false;
+		int searchIndex=0;
+		String searchPhone;
+
+		System.out.println("검색할 핸드폰 뒷자리(4개) 입력하세요");
+		searchPhone=sc.nextLine();
+
+
+		for(MemberDto dto:list)
+		{
+			f=true;
+
+			if(dto.getHp().endsWith(searchPhone))
+			{
+				System.out.println(dto.getName()+"\n"+dto.getHp()+"\n"+dto.getAddr()+"\n"+dto.getBlood().toUpperCase());
+				System.out.println("-".repeat(40));
+			
+			}
+
+		}
+		if(!f)
+			System.out.println(searchPhone+"번호를 가진 멤버는 명단에 없습니다");
+
 	}
 
 
