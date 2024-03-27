@@ -1,17 +1,17 @@
 package day0327;
 
 public class StudentDto {
-	
+
 	private int age;
 	private int java;
 	private int spring;
 	private int html;
-	
+	String grade;
 	//디폴트 생성자
 	public StudentDto() {
 		super();
 	}
-	
+
 	//매개변수 있는 생성자
 	public StudentDto(String name, int age, int java, int spring, int html) {
 		super();
@@ -21,7 +21,7 @@ public class StudentDto {
 		this.spring = spring;
 		this.html = html;
 	}
-	
+
 	//setter&getter 
 	private String name;
 	public String getName() {
@@ -66,13 +66,29 @@ public class StudentDto {
 
 
 	//java+spring+html 의 합을 반환하는 메서드(getTotal)
-	
-	
-	
+	public int getTotal() {
+		return java+spring+html;
+	}
+
 	//getTotal()/3.0 으로 나눠서 반환하는 메서드 (getAvg)
-	
+	public double getAvg() {
+		return getTotal()/3.0;
+	}
 	//getAvg()의 값이 90이상이면 "*****" ~, 80이상이면 "****", 70이상이면 "***", 나머지는 "*"
-	
+	public String getGrade() {
+
+		if(getAvg()>=90)
+			grade="*****";
+		else if(getAvg()>=80)
+			grade="****";
+		else if(getAvg()>=70)
+			grade="***";
+		else
+			grade="*";
+		
+		return grade;
+	}
+
 	//반환하는 메서드 (getGrade) 
-	
+
 }
