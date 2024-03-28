@@ -117,7 +117,6 @@ public class Ex8_MemberList {
 		list.add(dto);
 		System.out.println(list.size()+"번째 멤버 정보를 추가하였습니다 !! ");
 
-
 	}
 	//멤버 삭제 
 	public void deleteMember() {
