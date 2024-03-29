@@ -3,6 +3,7 @@ package day0328;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Random;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -10,6 +11,8 @@ import javax.swing.JOptionPane;
 
 public class Ex4_SwingButton extends JFrame{
 	JButton btn1,btn2;
+	JButton []btnArray=new JButton[6];
+	String []btnLabel= {"초록색","빨간색","분홍색","오렌지색","노랑색","랜덤색"};
 	
 	public Ex4_SwingButton(String title) {
 		// TODO Auto-generated constructor stub
@@ -47,6 +50,56 @@ public class Ex4_SwingButton extends JFrame{
 		btn2.setBounds(130, 10, 100, 30);//x,y,w,h
 		this.add(btn2);
 		btn2.addActionListener(new Button2Event());
+		
+		//btnArray 배열 변수를 생성후 프레임에 추가
+		int yPos=40;
+		for(int i=0;i<btnArray.length;i++) {
+			btnArray[i]=new JButton(btnLabel[i]);
+			btnArray[i].setBounds(10,yPos,100,30);
+			this.add(btnArray[i]);
+			yPos+=35;
+			
+			//익명 내부 클래스 형태로 이벤트 구현
+			btnArray[i].addActionListener(new ActionListener() {
+
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					// TODO Auto-generated method stub
+					//Object ob=e.getSource();//이벤트가 발생한 오브젝트
+					JButton ob=(JButton)e.getSource();
+					System.out.println(ob.getText()); 
+					//System.out.println(ob.getLabel()); 웬만하면 쓰지 않는게 좋음
+					
+					switch(ob.getText()) {
+					case "빨간색":
+						//부모 컴포넌트의 인스턴스 변수인 this를 통해서 배경색 변경 
+						Ex4_SwingButton.this.getContentPane().setBackground(Color.red);
+						break;
+					case "초록색":
+						Ex4_SwingButton.this.getContentPane().setBackground(Color.green);
+						break;
+					case "분홍색":
+						Ex4_SwingButton.this.getContentPane().setBackground(Color.pink);
+						break;
+					case "오렌지색":
+						Ex4_SwingButton.this.getContentPane().setBackground(Color.orange);
+						break;
+					case "노랑색":
+						Ex4_SwingButton.this.getContentPane().setBackground(Color.yellow);
+						break;
+					case "랜덤색":
+					{
+						int r=(int)(Math.random()*256);
+						int g=(int)(Math.random()*256);
+						int b=(int)(Math.random()*256);
+						Ex4_SwingButton.this.getContentPane().setBackground(new Color(r,g,b));
+						
+						break;
+					}}
+				}
+				
+			});
+		}
 	}
 	
 	//버튼 2 이벤트
