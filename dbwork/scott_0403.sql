@@ -42,7 +42,7 @@ select replace('Good day','o','*') from dual; --o를 *로 변경해서 출력
 select instr('happy','a') from dual; --happy에 aㅇ의 위치 :2
 select instr('happy','x') from DUAL; --x가 없을 경우 0
 select instr('have a nice day','nice') from dual;
-
+select trim('   hello   ') from dual;--앞뒤 공백 제거후 출력
 
 --기타 함수
 --NVL은 널일경우 대체값으로 출력
