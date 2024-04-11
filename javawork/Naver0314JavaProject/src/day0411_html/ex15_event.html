@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Title</title>
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400..700&family=Dancing+Script:wght@400..700&family=East+Sea+Dokdo&family=Gaegu&family=Gamja+Flower&family=Pacifico&family=Single+Day&display=swap"
+          rel="stylesheet">
+
+</head>
+<body>
+    <h1>버튼 이벤트-태그삽입형</h1>
+    <button type="button" onclick="alert('hello!!')">이벤트 #1</button> <!--" ' 는 서로 교차되게 쓰면 됨-->
+
+    <h1>이미지 이벤트-태그 하나에 이벤트는 여러개 가능 #1</h1>
+    <img src="../image/food/1.jpg" width="200" height="200"
+    onmouseover="this.src='../image/food/2.jpg'"
+    onmouseout="this.src='../image/food/1.jpg'"> <!-- 미우스 oval, out 한쌍-->
+
+    <h1>이미지 이벤트-태그 하나에 이벤트는 여러개 가능 #2</h1>
+    <img src="../image/talent/13.jpg" width="200" height="200"
+         onmouseenter="this.src='../image/talent/11.jpg'"
+         onmouseleave="this.src='../image/talent/13.jpg'"> <!-- 미우스 Enter,leave 한쌍-->
+
+</body>
+</html>
+
