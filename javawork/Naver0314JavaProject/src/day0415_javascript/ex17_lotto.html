@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+    }
+
+    li,
+    ul {
+        list-style: none;
+    }
+
+    .content li {
+        float: left;
+        margin-left: 30px;
+        width: 75px;
+        height: 75px;
+        background-color: red;
+        text-align: center;
+        border-radius: 50%;
+        padding-top: 20px;
+        font-size: 2em;
+        box-sizing: border-box;
+        text-shadow: 1px 1px 2px white;
+        box-shadow: 1px 1px 2px black;
+    }
+
+    .content ul {
+        margin-top: 30px;
+
+    }
+</style>
+
+<body>
+<select id="lotto">
+    <option value="1">1</option>
+    <option value="2">2</option>
+    <option value="3">3</option>
+    <option value="4">4</option>
+    <option value="5">5</option>
+    <option value="6">6</option>
+    <option value="7">7</option>
+    <option value="8">8</option>
+    <option value="9">9</option>
+    <option value="10">10</option>
+</select>
+
+<div class="content">
+</div>
+
+
+<script>
+    let lotto = document.getElementById('lotto');
+    lotto.onchange = function () {
+        // lotto에서 선택된 옵션의 값 가져오기
+        var lotto = document.getElementById('lotto');
+        var result = parseInt(lotto.options[lotto.selectedIndex].value);
+
+        // content 요소 선택
+        var content = document.querySelector('.content');
+        content.innerHTML = '';
+
+        // result만큼 ul을 생성하고 각 ul에 6개의 li를 생성하여 숫자를 넣음
+        for (var j = 0; j < result; j++) {
+            // ul 요소 생성
+            var ul = document.createElement('ul');
+
+            // li에 들어갈 숫자를 생성하고 중복을 방지함
+            var numbers = [];
+            while (numbers.length < 6) {
+                var randomNumber = getRandom(45)
+                if (numbers.indexOf(randomNumber) === -1) { // 중복되지 않는 숫자인지 확인
+                    numbers.push(randomNumber);
+                }
+            }
+
+            // 숫자 정렬
+            numbers.sort(function (a, b) {
+                return a - b;
+            });
+
+            // li 요소를 6번 생성하고 숫자를 넣음
+            for (var i = 0; i < 6; i++) {
+                var li = document.createElement('li');
+                li.textContent = numbers[i];
+                li.style.backgroundColor = "#" + getRandom(16777215)
+                ul.appendChild(li);
+            }
+
+            // ul 요소를 content에 추가
+            content.appendChild(ul);
+
+            // div 요소 생성
+            var div = document.createElement('div');
+            div.style.clear = 'both';
+
+            // div 요소를 content에 추가
+            content.appendChild(div);
+        }
+    }
+
+    function getRandom(num) {
+        return parseInt(Math.random() * num + 1);
+    }
+</script>
+</body>
+
+</html>

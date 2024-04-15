@@ -1,0 +1,60 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .box {
+            width: 50px;
+            height: 50px;
+            border: 1px solid black;
+            margin-right: 5px;
+            border-radius: 100px;
+            display: inline-block;
+        }
+    </style>
+    <script>
+        window.onload = function(){
+            document.getElementById("random").onclick=function(){
+                let su = parseInt(document.getElementById("choice").value);
+                let resultDiv = document.getElementById("result");
+                resultDiv.innerHTML = ""; // 이전 결과를 초기화
+
+                for(let w = 1; w <= su; w++){
+                    let arr = [];
+                    for(let i = 0; i < 6; i++){
+                        let n = parseInt(Math.random()*45)+1;
+                        arr.push(n);
+                    }
+                    arr.sort(function(a, b) { return a - b; });
+
+                    let roundDiv = document.createElement("div");
+                    roundDiv.textContent = w + "회차";
+
+                    for(let i = 0; i < arr.length; i++){
+                        let numberSpan = document.createElement("span");
+                        numberSpan.textContent = arr[i];
+                        numberSpan.className = "box";
+                        roundDiv.appendChild(numberSpan);
+                    }
+                    resultDiv.appendChild(roundDiv);
+                }
+            }
+        }
+    </script>
+</head>
+<body>
+<select id="choice">
+    <option value="1">1</option>
+    <option value="2">2</option>
+    <option value="3">3</option>
+    <option value="4">4</option>
+    <option value="5">5</option>
+</select>
+<button type="button" id="random">로또</button>
+
+<div id="result"></div>
+</body>
+</html>

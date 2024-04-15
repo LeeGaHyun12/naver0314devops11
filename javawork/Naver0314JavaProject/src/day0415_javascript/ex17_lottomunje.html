@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .box{
+            width: 50px;
+            height: 50px;
+            border: 1px solid black;
+            margin-right: 5px;
+            border-radius: 100px;
+        }
+    </style>
+    <script>
+        window.onload = function(){
+            document.getElementById("random").onclick=function(){
+
+
+                let arr = new Array();
+                let temp = 0;
+                let su = document.getElementById("choice").value;
+                console.log(su);
+
+                for(let w = 1; w <= su; w++){
+                    document.write(w + "회차<br>");
+                    for(let i = 0; i < 6; i++){
+                        let n = parseInt(Math.random()*45)+1
+                        arr[i] = n;
+                        for(let j = 0; j < i; j++) {
+                            if(arr[i] == arr[j]) {
+                                i--;
+                            }
+                        }
+                    }
+
+
+                    for(let i = 0; i < arr.length - 1; i++) {
+                        for(let j = i + 1; j < arr.length; j++) {
+                            if(arr[i] > arr[j]) {
+                                temp = arr[i];
+                                arr[i] = arr[j];
+                                arr[j] = temp;
+                            }
+                        }
+                    }
+
+                    for(let i = 0; i < arr.length; i++){
+                        let s=`
+                    <div class="box">
+                       ${arr[i]}<br>
+                    </div>
+                `;
+                        document.write(s);
+                        // document.write(arr[i]+"<br>");
+                    }
+
+                    document.write("===============<br>");
+
+                    let backButton = document.createElement("button");
+                    backButton.textContent = "다시하기";
+                    backButton.onclick = function() {
+                        consol.log("테스트");
+                        window.history.back();
+                    }
+                }
+            }
+        }
+    </script>
+
+</head>
+
+<body>
+<select id="choice">
+    <option value="1">1</option>
+    <option value="2">2</option>
+    <option value="3">3</option>
+    <option value="4">4</option>
+    <option value="5">5</option>
+</select>
+<button type="button" id="random">로또</button>
+
+</body>
+</html>
