@@ -1,0 +1,35 @@
+<!DOCTYPE html> <!-- 이 문서의 종류를 HTML로 선언합니다. -->
+<html lang="en"> <!-- 문서의 언어를 영어로 지정합니다. -->
+<head>
+    <meta charset="UTF-8"> <!-- 문자 인코딩을 UTF-8로 설정합니다. -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- 반응형 디자인을 위한 뷰포트를 설정합니다. -->
+    <title>Title</title> <!-- 웹페이지의 제목을 설정합니다. -->
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400..700&family=Dancing+Script:wght@400..700&family=East+Sea+Dokdo&family=Gaegu&family=Gamja+Flower&family=Pacifico&family=Single+Day&display=swap"
+          rel="stylesheet"> <!-- 지정된 글꼴을 Google Fonts 스타일시트에서 불러옵니다. -->
+</head>
+<body>
+<h2>자바스크립트로 jquery_image 폴더의 01.png~12.png까지 이미지 출력</h2> <!-- 첫 번째 이미지 세트에 대한 제목 -->
+<script>
+    for(let i=1;i<=12;i++) // 01.png부터 12.png까지의 이미지 태그를 생성하는 JavaScript 반복문
+    {
+        let s="<img src='../jquery_image/"+(i<10?"0":"")+i+".png' width=70>" // 이미지 태그를 소스와 너비와 함께 구성합니다.
+        document.write(s); // 이미지 태그를 문서에 작성합니다.
+    }
+</script>
+<hr> <!-- 수평선 -->
+<script>
+    for(let i=1;i<=12;i++){ // 01.png부터 12.png까지의 이미지 태그를 생성하는 JavaScript 반복문
+        let s=""; // 빈 문자열 변수를 초기화합니다.
+        if(i<10) // 숫자가 10보다 작은지 확인합니다.
+            s=`<img src="../jquery_image/0${i}.png" width=70>`; // 소스와 너비를 함께 지정하여 이미지 태그를 구성합니다.
+        else
+            s=`<img src="../jquery_image/${i}.png" width=70>`; // 소스와 너비를 함께 지정하여 이미지 태그를 구성합니다.
+
+        document.write(s); // 이미지 태그를 문서에 작성합니다.
+    }
+</script>
+<hr> <!-- 수평선 -->
+<h3>mycar 폴더의 mycar1.png~mycar15.png까지 이미지 출력</h3> <!-- 두 번째 이미지 세트에 대한 제목 -->
+<!-- 두 번째 이미지 세트에 대한 스크립트가 제공되지 않았습니다. 이 스니펫에서는 누락된 것으로 가정합니다. -->
+</body>
+</html>
