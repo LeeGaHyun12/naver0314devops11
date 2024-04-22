@@ -1,0 +1,49 @@
+<!DOCTYPE html>    <!-- HTML5 문서 형식을 정의합니다. -->
+<html lang="en">    <!-- 문서 언어를 설정합니다. -->
+<head>
+    <meta charset="UTF-8">    <!-- 문서의 문자 인코딩을 설정합니다. -->
+    <title>Title</title>    <!-- 문서의 제목을 설정합니다. -->
+</head>
+<body>
+<div>one</div>    <!-- 일반적인 div 요소를 생성하고 "one"이라는 텍스트를 포함합니다. -->
+<div>two</div>    <!-- 일반적인 div 요소를 생성하고 "two"라는 텍스트를 포함합니다. -->
+<div>three</div>    <!-- 일반적인 div 요소를 생성하고 "three"이라는 텍스트를 포함합니다. -->
+
+<div class="lang">    <!-- 클래스가 "lang"인 div 요소를 생성합니다. -->
+    <div class="box">java</div>    <!-- 클래스가 "box"인 div 요소를 생성하고 "java"라는 텍스트를 포함합니다. -->
+    <div class="box">jsp</div>    <!-- 클래스가 "box"인 div 요소를 생성하고 "jsp"라는 텍스트를 포함합니다. -->
+    <div class="box">javascript</div>    <!-- 클래스가 "box"인 div 요소를 생성하고 "javascript"라는 텍스트를 포함합니다. -->
+    <div>    <!-- 일반적인 div 요소를 생성합니다. -->
+        <img src="../image/mycar/mycar13.png" width="130">    <!-- 이미지를 포함한 img 요소를 생성하고 경로와 크기를 설정합니다. -->
+    </div>
+    <div>    <!-- 일반적인 div 요소를 생성합니다. -->
+        <img src="../image/mycar/mycar15.png" width="130">    <!-- 이미지를 포함한 img 요소를 생성하고 경로와 크기를 설정합니다. -->
+    </div>
+    <div>    <!-- 일반적인 div 요소를 생성합니다. -->
+        <img src="../image/mycar/mycar5.png" width="130">    <!-- 이미지를 포함한 img 요소를 생성하고 경로와 크기를 설정합니다. -->
+    </div>
+</div>
+<script>
+    //querySelector: 첫번째 값의 요소값만 얻는다(배열아님)
+    //querySelectorAll: 모든 요소값을 배열타입으로 얻는다
+
+    let a=document.querySelector("div"); // 첫 번째 div 요소를 선택합니다.
+    a.style.border="2px dotted red"; // 선택한 div 요소에 빨간 점선 테두리를 추가합니다.
+
+    let b=document.querySelector("div.lang>div.box"); // "lang" 클래스 안에 있는 첫 번째 "box" 클래스 div 요소를 선택합니다.
+    b.style.backgroundColor="orange"; // 선택한 요소의 배경색을 주황색으로 설정합니다.
+
+    let c=document.querySelectorAll("div.mycar>div>img"); // "mycar" 클래스 안에 있는 모든 img 요소를 선택합니다.
+    for(let cc of c)
+        cc.style.border="5px inset green"; // 선택한 이미지 요소에 녹색 내부 그림자 테두리를 추가합니다.
+
+    let d=document.querySelectorAll("div.lang>div.box"); // "lang" 클래스 안에 있는 모든 "box" 클래스 div 요소를 선택합니다.
+    for(let dd of d)
+    {
+        dd.style.fontFamily="Comic Sans MS"; // 선택한 요소의 글꼴을 "Comic Sans MS"로 설정합니다.
+        dd.style.color="red"; // 선택한 요소의 텍스트 색상을 빨간색으로 설정합니다.
+        dd.style.fontSize="2em"; // 선택한 요소의 글꼴 크기를 2em으로 설정합니다.
+    }
+</script>
+</body>
+</html>
