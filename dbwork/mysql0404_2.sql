@@ -127,3 +127,8 @@ select
 from shop
          inner join cart
                     on shop.shopnum=cart.shopnum;
+
+-- 문제 : 아래의 결과를 자바파일로 실행해서 출력되도록 하세요
+select buseo,count(*) inwon, max(score) maxscore, ceiling(avg(score)) avgscore
+from sawon
+group by buseo;

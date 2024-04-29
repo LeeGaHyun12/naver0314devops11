@@ -15,7 +15,7 @@
         div.a{
             position: absolute;	width: 300px;height: 150px;
             font-size: 19px; font-family: 'Jua';
-            border: 1px dotted gray;
+            /* border: 1px dotted gray; */
         }
         #one{left:50px;top: 100px;}
         #two{left:400px;top: 100px;}
@@ -40,23 +40,57 @@
         }
         button.a{background-color:#2e8b57; color:#fff;}
         button.b{background-color:#db7093;}
+
+        #three>h3{
+            cursor: pointer;
+        }
     </style>
     <script>
         $(function(){
+            var theater="",movie="";
+
             let b=`<button type="button" class="a" id="btn1">영화예매</button>` ;
             $("#one").html(b);
 
-            //btn1 이벤트
             $("#btn1").click(function(){
-                alert("영화예매 버튼");
+                var b="<button type='button' id='btn2' class='b'>극장 선택</button>";
+                b+="&nbsp;<button type='button' id='btn3' class='b'>영화 선택</button>";
+                $("#two").html(b);
+            });
+
+            //처음에 존재하지 않았던 요소에 대한 이벤트는 on사용
+            $(document).on("click","#btn2",function(){
+                var s="<h3 class='theater'>CGV 강남점</h3>";
+                s+="<h3 class='theater'>MEGABOX 강남점</h3>";
+                s+="<h3 class='theater'>CGV 교보타워점</h3>";
+                $("#three").html(s);
+            });
+
+            //영화
+            $(document).on("click","#btn3",function(){
+                var s="<h3 class='movie'>바람과 같이 사라지다</h3>";
+                s+="<h3 class='movie'>엑시트</h3>";
+                s+="<h3 class='movie'>괴물</h3>";
+                $("#three").html(s);
+            });
+
+            //영화제목이나 영화관에서 클릭하면 해당 값을 얻어서
+            //#result 에 출력
+            $(document).on("click","#three h3",function(){
+                var select=$(this).attr("class");
+                if(select=='theater')
+                    theater="극장명 : "+$(this).text();
+                else
+                    movie="영화제목 : "+$(this).text();
+                $("#result").html(theater+"<br>"+movie);
             });
         });
     </script>
 </head>
 <body>
-<div id="one" class="a">one</div>
-<div id="two" class="a">two</div>
-<div id="three" class="a">three</div>
-<div id="result" class="a">result</div>
+<div id="one" class="a"></div>
+<div id="two" class="a"></div>
+<div id="three" class="a"></div>
+<div id="result" class="a"></div>
 </body>
 </html>

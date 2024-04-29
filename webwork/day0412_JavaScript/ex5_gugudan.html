@@ -1,0 +1,66 @@
+<!DOCTYPE html> <!-- HTML 문서 형식을 선언합니다. -->
+<html lang="en"> <!-- 언어를 영어로 설정합니다. -->
+<head>
+    <meta charset="UTF-8"> <!-- 문자 인코딩을 UTF-8로 설정합니다. -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- 반응형 디자인을 위한 viewport 설정입니다. -->
+    <title>Document</title> <!-- 문서의 제목을 설정합니다. -->
+    <style>
+        table{
+            width: 100%; /* 테이블의 너비를 100%로 설정합니다. */
+            border-collapse: collapse; /* 테이블 셀의 경계를 합칩니다. */
+            border:3px groove gray; /* 외곽선을 설정합니다. */
+        }
+
+        tr{
+            height: 40px; /* 행의 높이를 40px로 설정합니다. */
+            border:1px solid lightgray; /* 가로 줄의 스타일을 설정합니다. */
+        }
+        td,th{
+            border:1px solid lightgray; /* 셀의 테두리 스타일을 설정합니다. */
+            font-size: 15px; /* 폰트 크기를 15px로 설정합니다. */
+            font-family: 'Comic Sans MS'; /* 폰트를 'Comic Sans MS'로 설정합니다. */
+            text-align: center; /* 텍스트를 가운데 정렬합니다. */
+        }
+    </style>
+</head>
+<body>
+<table>
+    <caption><h3>[전체 구구단]</h3></caption> <!-- 테이블 캡션을 통해 전체 구구단임을 표시합니다. -->
+    <tr style="background-color: pink;"> <!-- 첫 번째 행에는 배경색이 분홍색인 행을 생성합니다. -->
+        <script>
+            for(let dan=2;dan<=9;dan++){ <!-- 2단부터 9단까지의 구구단 제목을 생성하는 JavaScript 반복문입니다. -->
+                let s=`<th>${dan}단</th>`; <!-- 각 단의 제목을 th 태그로 생성합니다. -->
+                document.write(s); <!-- 생성된 제목을 문서에 작성합니다. -->
+            }
+        </script>
+    </tr>
+    <script>
+        for(let i=1;i<=9;i++){ <!-- 구구단의 각 행을 생성하는 JavaScript 반복문입니다. -->
+            document.write("<tr>"); <!-- 행을 시작합니다. -->
+            for(let dan=2;dan<=9;dan++){ <!-- 각 단의 곱셈 결과를 표시하는 반복문입니다. -->
+                document.write(`<td>${dan}X${i}=${dan*i}</td>`); <!-- 각 셀에 구구단 결과를 표시합니다. -->
+            }
+            document.write("</tr>"); <!-- 행을 종료합니다. -->
+        }
+    </script>
+</table>
+<hr> <!-- 수평선을 추가합니다. -->
+<table>
+    <script>
+        for(i=0 ; i<=9 ; i++){ <!-- 각 단의 곱셈 결과를 표시하는 테이블입니다. -->
+            document.write("<tr>"); <!-- 행을 시작합니다. -->
+            let s; <!-- 문자열 변수를 선언합니다. -->
+            for(j=2 ; j<=9 ; j++){ <!-- 각 단의 곱셈 결과를 표시하는 반복문입니다. -->
+                if(i==0) { <!-- 첫 번째 행은 각 단의 제목입니다. -->
+                    s = `<th>${j}단</th>`; <!-- 각 단의 제목을 th 태그로 생성합니다. -->
+                }else { <!-- 나머지 행은 곱셈 결과를 표시합니다. -->
+                    s = `<td>${j} x ${i} = ${i*j}</td>`; <!-- 각 셀에 곱셈 결과를 표시합니다. -->
+                }
+                document.write(s); <!-- 생성된 셀을 문서에 작성합니다. -->
+            }
+            document.write("</tr>"); <!-- 행을 종료합니다. -->
+        }
+    </script>
+</table>
+</body>
+</html>

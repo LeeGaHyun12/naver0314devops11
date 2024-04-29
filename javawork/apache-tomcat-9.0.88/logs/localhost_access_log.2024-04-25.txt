@@ -1,0 +1,6 @@
+127.0.0.1 - - [25/Apr/2024:11:42:15 +0900] "GET /Gradle___org_example___JSP_naver_1_0_SNAPSHOT_war/ HTTP/1.1" 404 721
+127.0.0.1 - - [25/Apr/2024:11:42:15 +0900] "GET / HTTP/1.1" 404 721
+0:0:0:0:0:0:0:1 - - [25/Apr/2024:11:42:15 +0900] "GET /Gradle___org_example___JSP_naver_1_0_SNAPSHOT_war/ HTTP/1.1" 404 721
+0:0:0:0:0:0:0:1 - - [25/Apr/2024:11:42:16 +0900] "GET /favicon.ico HTTP/1.1" 404 721
+0:0:0:0:0:0:0:1 - - [25/Apr/2024:11:42:21 +0900] "GET /Gradle___org_example___JSP_naver_1_0_SNAPSHOT_war/ HTTP/1.1" 404 721
+0:0:0:0:0:0:0:1 - - [25/Apr/2024:11:42:38 +0900] "GET / HTTP/1.1" 404 721

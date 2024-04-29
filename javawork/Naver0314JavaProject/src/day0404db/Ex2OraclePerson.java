@@ -25,7 +25,13 @@ public class Ex2OraclePerson {
         Connection conn=null;
         Statement stmt=null;
         ResultSet rs=null;
-        String sql="select pnum,pname,upper(pblood) pblood,page,to_char(ipasaday,'yyyy-mm-dd') ipsaday from person";
+//        String sql="select pnum,pname,upper(pblood) pblood,page,to_char(ipasaday,'yyyy-mm-dd') ipsaday from person";
+        String sql=
+            """
+            select pnum,pname,upper(pblood) pblood,
+            page,to_char(ipsaday,'yyyy-mm-dd')
+            ipsaday from person
+            """;
         try {
             conn = DriverManager.getConnection(ORACLE_URL, USERNAME, PASSWORD);
             System.out.println("ORACLE 서버에 연결 성공!");

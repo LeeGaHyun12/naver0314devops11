@@ -12,7 +12,7 @@
 <script>
     for(let i=1;i<=12;i++) // 01.png부터 12.png까지의 이미지 태그를 생성하는 JavaScript 반복문
     {
-        let s="<img src='../jquery_image/"+(i<10?"0":"")+i+".png' width=70>" // 이미지 태그를 소스와 너비와 함께 구성합니다.
+        let s="<img src="+(i<10?"0":"")+i+"'../image/jquery_image/.png' width=70>" // 이미지 태그를 소스와 너비와 함께 구성합니다.
         document.write(s); // 이미지 태그를 문서에 작성합니다.
     }
 </script>
@@ -21,9 +21,9 @@
     for(let i=1;i<=12;i++){ // 01.png부터 12.png까지의 이미지 태그를 생성하는 JavaScript 반복문
         let s=""; // 빈 문자열 변수를 초기화합니다.
         if(i<10) // 숫자가 10보다 작은지 확인합니다.
-            s=`<img src="../jquery_image/0${i}.png" width=70>`; // 소스와 너비를 함께 지정하여 이미지 태그를 구성합니다.
+            s=`<${i}mg src="../image/jquery_image/0i.png" width=70>`; // 소스와 너비를 함께 지정하여 이미지 태그를 구성합니다.
         else
-            s=`<img src="../jquery_image/${i}.png" width=70>`; // 소스와 너비를 함께 지정하여 이미지 태그를 구성합니다.
+            s=`<${i}mg src="../image/jquery_image/i.png" width=70>`; // 소스와 너비를 함께 지정하여 이미지 태그를 구성합니다.
 
         document.write(s); // 이미지 태그를 문서에 작성합니다.
     }
