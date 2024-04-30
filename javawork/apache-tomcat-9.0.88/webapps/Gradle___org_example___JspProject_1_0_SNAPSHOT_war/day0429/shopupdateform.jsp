@@ -37,17 +37,14 @@
 <body>
 <div style="margin: 10px;width: 300px;">
     <form action="./shopaction.jsp" method="post">
-        <!-- hidden : 서버 전송시 각 상품에 대한 인덱스 값이 같이 보내져야 한다-->
-        <input type="hidden" name="shopidx" value="<%=shopidx%>">
-
         <table class="table table-bordered">
-            <caption align="top"><b>상품 수정</b></caption>
+            <caption align="top"><b>상품 등록</b></caption>
             <tr>
                 <th width="100"  class="table-danger"
                     value="<%=dto.getSname()%>">상품명</th>
                 <td>
                     <input type="text" name="sname" class="form-control"
-                           required="required" value="<%=dto.getSname()%>">
+                           required="required">
                 </td>
             </tr>
             <tr>
@@ -61,7 +58,7 @@
                 <th width="100"  class="table-danger">상품갯수</th>
                 <td>
                     <input type="number" name="scount" class="form-control"
-                           min="1" max="5" step="1" value="<%=dto.getScount()%>">
+                           min="1" max="5" step="1" value="1">
                 </td>
             </tr>
             <tr>
@@ -99,7 +96,7 @@
                 <td colspan="2" align="center">
                     <button type="submit" class="btn btn-secondary">DB수정</button>
                     <button type="button" class="btn btn-secondary"
-                            onclick="history.go(-1);">이전으로</button> <!-- go(-1) 이나 back() 같음 -->
+                            onclick="history.go(-1);">이전으로</button>
                 </td>
             </tr>
         </table>
