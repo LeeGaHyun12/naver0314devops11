@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebContextManager">
+    <option name="state">
+      <map>
+        <entry key="file://$PROJECT_DIR$/src/main/webapp/day0510/shopajax.html" value="file://$PROJECT_DIR$/src/main/webapp/day0510" />
+        <entry key="file://$PROJECT_DIR$/src/main/webapp/index.jsp" value="file://$PROJECT_DIR$/src/main/webapp" />
+        <entry key="file://$PROJECT_DIR$/src/main/webapp/snackanalysis/login.jsp" value="file://$PROJECT_DIR$/src/main/webapp/snackanalysis" />
+        <entry key="file://$PROJECT_DIR$/src/main/webapp/snackanalysis/snackinfo.jsp" value="file://$PROJECT_DIR$/src/main/webapp/snackanalysis" />
+      </map>
+    </option>
+  </component>
+</project>

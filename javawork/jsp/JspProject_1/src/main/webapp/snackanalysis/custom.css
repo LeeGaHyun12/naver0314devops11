@@ -1,0 +1,141 @@
+
+* {
+    margin: 0;
+    padding: 0;
+    font-family: 'Exo', 'Jua';
+}
+
+html,
+body {
+    height: 100%;
+}
+
+body {
+    background-color: #996633;
+}
+
+a {
+    text-decoration: none;
+}
+
+.header-buttons {
+    margin-top: auto;
+    margin-left: auto;
+    margin-right: 20px;
+    font-family: Jua;
+}
+.menu-list {
+    list-style: none;
+    padding: 0;
+}
+
+.menu-item {
+    text-decoration: none;
+    color: inherit;
+    padding: 10px 40px; /* 상하 10px, 좌우 20px 간격 설정 */
+    display: inline-block; /* 한 줄에 나열되도록 설정 */
+    font-size: 30px; /* 텍스트 크기 설정 */
+}
+
+.menu-item:hover {
+    background-color: #5b3421; /* 마우스를 올렸을 때 배경색 변경 */
+    border-radius: 20px;
+}
+
+#content {
+    position: relative;
+    top: calc(50vh - 270px);
+    width: 500px;
+    height: 500px;
+    background-color: rgba(255, 255, 255, 0.5);
+
+    border-radius: 20px;
+    border: solid 1px rgba(0, 0, 0, 0.08);
+    box-shadow: 0 0 50px 0 rgba(0, 0, 0, 0.04);
+    margin: 0 auto;
+
+    text-align: center;
+
+}
+
+.logo {
+    margin: 50px 50px;
+    width: 135px;
+}
+
+.login_input_text {
+    width: 330px;
+    height: 50px;
+    border-radius: 11px;
+    border: solid 1px #dfdfdf;
+    background: #fff;
+    margin-top: -5px;
+    margin-bottom: 15px;
+    padding: 15px;
+    box-sizing: border-box;
+    font-size: 16px;
+}
+
+.login_input_text::placeholder {
+    color: #c6c6c6;
+
+}
+
+.login_input_btn {
+    width: 330px;
+    height: 50px;
+    border-radius: 11px;
+    background-color: #995544;
+    font-weight: bold;
+    border: none;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+
+}
+
+.login_input_btn:hover {
+    background-color: #995544;
+
+}
+
+.find_info a {
+    font-size: 14px;
+    font-family: 'Exo';
+    color: #330000;
+    line-height: 25px;
+}
+
+.find_info a:hover {
+    color: #995533;
+}
+
+#copyright {
+    position: absolute;
+    bottom: -50px;
+    width: 100%;
+    font-size: 14px;
+    color: #9f9f9f;
+    font-family: 'Exo'f;
+}
+
+@media screen and (max-width: 768px) {
+    #content {
+        width: 100%;
+        height: auto;
+        background-color: rgba(255, 255, 255, 0);
+        border: none;
+        box-shadow: none;
+
+    }
+
+    .login_input_text, .login_input_btn {
+        width: 80%;
+    }
+}
+.header-buttons {
+    margin-top: auto;
+    margin-left: auto;
+    margin-right: 20px;
+    font-family: Jua;
+}
