@@ -9,7 +9,7 @@
             update reboard set restep=restep+1 where regroup=#{regroup} and restep&gt;#{restep}
         </update>
         <insert id="insertBoard" parameterType="ReBoardDto">
-            insert into reboard (wrtier,myid,subject,uploadphoto,content, regroup,restep,relevel,writeday)
+            insert into reboard (writer,myid,subject,uploadphoto,content, regroup,restep,relevel,writeday)
             values (#{writer},#{myid},#{subject},#{uploadphoto},#{content},#{regroup},#{restep},#{relevel},now())
 
             <selectKey keyProperty="num" resultType="int" order="AFTER">
@@ -28,4 +28,14 @@
     <select id="getData" parameterType="int" resultType="ReBoardDto">
         select * from reboard where num=#{num}
     </select>
+    <update id="updateBoard" parameterType="ReBoardDto">
+        update reboard set subject=#{subject},content=#{content}
+        <if test="uploadphoto!=null">
+            ,uploadphoto=#{uploadphoto}
+        </if>
+        where num=#{num}
+    </update>
+    <delete id="deleteBoard" parameterType="int">
+        delete from reboard where num=#{num}
+    </delete>
 </mapper>

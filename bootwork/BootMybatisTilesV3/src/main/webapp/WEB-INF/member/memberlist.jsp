@@ -18,6 +18,7 @@
         }
     </style>
 </head>
+<c:set var="stpath" value="https://kr.object.ncloudstorage.com/bitcamp-bucket-56/photocommon"/>
 <body>
 <h2 class="alert alert-warning" style="width: 700px;">
     총 ${totalCount}명의 회원이 있습니다
@@ -26,12 +27,13 @@
                 onclick="location.href='./form'">멤버등록</button>
 	</span>
 </h2>
-<c:if test="${sessionScope.loginok!=null and sessionScope.loginid=='admin'}">
-    <h2>
-        <b>
-            전체 회원 명단은 관리자만 확인 가능합니다
-        </b>
-    </h2>
+
+<%--<c:if test="${sessionScope.loginok!=null and sessionScope.loginid=='admin'}">--%>
+<%--    <h2>--%>
+<%--        <b>--%>
+<%--            전체 회원 명단은 관리자만 확인 가능합니다--%>
+<%--        </b>--%>
+<%--    </h2>--%>
 <table class="table table-light table-hover table-sm" style="width: 700px;">
     <caption align="top">
         <h3><b>회원명단</b></h3>
@@ -47,7 +49,7 @@
         <tr>
             <td align="center">${i.count}</td>
             <td>
-                <img src="../save/${dto.photo}" class="rounded-circle"
+                <img src="${stpath}/${dto.photo}" class="rounded-circle"
                      style="width: 40px;height: 40px;"
                      onerror="this.src='../image/noimage1.png'">
                     ${dto.name}
@@ -61,6 +63,6 @@
         </tr>
     </c:forEach>
 </table>
-</c:if>
+<%--</c:if>--%>
 </body>
 </html>

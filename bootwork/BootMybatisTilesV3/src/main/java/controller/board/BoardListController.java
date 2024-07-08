@@ -1,33 +1,35 @@
 package controller.board;
 
-import data.dto.ReBoardDto;
-import data.service.MemberService;
-import data.service.ReBoardService;
-import lombok.NonNull;
-import lombok.RequiredArgsConstructor;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import java.util.List;
+import data.dto.ReBoardDto;
+import data.service.BoardAnswerService;
+import data.service.ReBoardService;
 
 @Controller
 public class BoardListController {
     @Autowired
     private ReBoardService boardService;
 
+    @Autowired
+    private BoardAnswerService answerService;
+
     @GetMapping("/board/list")
     public String list(
             @RequestParam(defaultValue = "1") int currentPage,
             Model model
-
-    ){
+    )
+    {
         //총 글의 갯수
         int totalCount=boardService.getTotalCount();
         //페이징에 필요한 변수들
-        int perPage=5;//한페이지당 보여질 글의 갯수
+        int perPage=10;//한페이지당 보여질 글의 갯수
         int perBlock=5;//현재블럭에 보여질 페이지의 갯수
         int start;//db 에서 가져올 시작번호
         int startPage;//각 블럭에 보여질 시작페이지
@@ -55,6 +57,13 @@ public class BoardListController {
 
         //목록 가져오기
         List<ReBoardDto> list=boardService.getPagingList(start, perPage);
+
+        //list의 각 dto 에 댓글 갯수 저장하기
+        for(ReBoardDto dto:list)
+        {
+            //num 에 해당하는 각 댓글의 갯수 저장
+            dto.setRecount(answerService.getAnswerData(dto.getNum()).size());
+        }
 
         //model 에 필요한 데이타 저장
         model.addAttribute("totalCount", totalCount);

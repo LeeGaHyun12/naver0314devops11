@@ -54,38 +54,42 @@
     <c:forEach var="dto" items="${list}">
         <tr>
             <td>
-                ${no}
+                    ${no}
                 <c:set var="no" value="${no-1}"/>
             </td>
-            <td><!--제목-->
-                <a href="./detail?num=${dto.num}">
-                    <!--relevel 한개당 두 칸 띄우기-->
+            <td><!-- 제목 -->
+                <a href="./detail?num=${dto.num}&currentPage=${currentPage}">
+                    <!-- relevel 한개당 두칸띄우기 -->
                     <c:forEach begin="1" end="${dto.relevel}">
                         &nbsp;&nbsp;
                     </c:forEach>
-                    <!--답글일경우 답글이미지-->
+                    <!-- 답글일경우 답글 이미지 -->
                     <c:if test="${dto.restep>0}">
                         <img src="../image/re.png">
                     </c:if>
-                    <!--제목-->
-                    ${dto.subject}
+                    <!-- 제목 -->
+                        ${dto.subject}
+                    <!-- 사진이 있을경우 아이콘 표시 -->
+                    <c:if test="${dto.uploadphoto!='no'}">
+                        <i class="bi bi-image"
+                           style="color: gray;"></i>
+                    </c:if>
+                    <!-- 댓글이 있는 경우만 갯수 출력 -->
+                    <c:if test="${dto.recount>0}">
+                        <span style="color: red;">(${dto.recount})</span>
+                    </c:if>
                 </a>
             </td>
+            <td>${dto.writer}</td>
             <td>
-                    ${dto.writer}
+                <fmt:formatDate value="${dto.writeday}" pattern="yyyy.MM.dd."/>
             </td>
-            <td>
-                    ${dto.writeday}
-            </td>
-            <td>
-                    ${dto.readcount}
-            </td>
+            <td>${dto.readcount}</td>
         </tr>
     </c:forEach>
 </table>
-
 <!-- 페이지 번호 출력 -->
-<div style="width: 600px;text-align: center;font-size: 22px;">
+<div style="width: 600px;text-align: center;font-size: 17px;">
     <!--
     이전: startPage가 1보다 클경우 이전이 보이도록 설정하는데
     이전을 클릭할경우 전블럭의 마지막 페이지가 현재페이지가 되어야한다
