@@ -8,6 +8,8 @@ import BoardList from "../components/BoardList";
 import BoardDetail from "../components/BoardDetail";
 import UpdateForm from "../components/UpdateForm";
 import UpdatePassForm from "../components/UpdatePassForm";
+import DaumPostApp from "../components/DaumPostApp";
+import SweetAlertApp from "../components/SweetAlertApp";
 
 const RouterMain = () => {
     return (
@@ -20,9 +22,12 @@ const RouterMain = () => {
                     <Route path='form' element={<BoardForm/>}/>
                     <Route path='list' element={<BoardList/>}/>
                     <Route path='detail/:boardnum' element={<BoardDetail/>}/>
+                    <Route path='updatepass/:boardnum' element={<UpdatePassForm/>}/>
                     <Route path='updateform/:boardnum' element={<UpdateForm/>}/>
-                    <Route path='updatepassform/:boardnum' element={<UpdatePassForm/>}/>
                 </Route>
+
+                <Route path='/post' element={<DaumPostApp/>}/>
+                <Route path='/sweet' element={<SweetAlertApp/>}/>
             </Routes>
         </div>
     );

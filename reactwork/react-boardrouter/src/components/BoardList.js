@@ -3,9 +3,15 @@ import {Alert} from "@mui/material";
 import axios from "axios";
 import {NavLink} from "react-router-dom";
 import defaultImage from '../image/Hugme.jpg';
+import Pagenation from './Pagenation';
 
 const BoardList = () => {
     const [boardList,setBoardList]=useState([]);
+
+    const [limit, setLimit] = useState(5);
+    const [page, setPage] = useState(1);
+    const offset = (page - 1) * limit;
+
     const getDataList=()=>{
         axios.get("/boot/board/list")
             .then(res=>{
@@ -25,7 +31,7 @@ const BoardList = () => {
     }, []);
 
     return (
-        <div style={{width:'500px'}}>
+        <div style={{width: '500px'}}>
             <Alert>
                 <b>총 {boardList.length}개의 게시글이 있슴미당</b>
             </Alert>
@@ -42,34 +48,46 @@ const BoardList = () => {
                 <tbody>
                 {
                     boardList && //이렇게 넣어주면 순간 이미지 불러오며 나는 에러가 안 남
-                    boardList.map((row,idx)=>
-                    <tr key={idx}>
-                        <td align='center'>{boardList.length-idx}</td>
-                        <td >
-                            {/*라우터메인에서 읽어오는 보드넘으로*/}
-                            <NavLink to={`/board/detail/${row.boardnum}`}
-                            style={{textDecoration:'none',color:'black'}}>
-                                <img alt='' src={`${storage}/${row.photo}`}
-                                     style={{width:'40px',height:'40px',marginRight:'5px'}}
-                                onError={handleError}/>
-                                {row.subject}
-                            </NavLink>
-                        </td>
-                        <td align='center'>
-                            {row.writer}
-                        </td>
-                        <td align='center'>
-                            <span style={{fontSize:'14px'}}>{row.writeday.substring(0,10)}</span>
-                            {/*0부터 9까지 잘라내서 시간은 안나오게*/}
-                        </td>
-                        <td align='center'>
-                            {row.readcount}
-                        </td>
-                    </tr>)
+                    boardList.slice(offset, offset+limit).map((row,idx) =>
+                        <tr key={idx}>
+                            <td align='center'>{boardList.length - idx}</td>
+                            <td>
+                                {/*라우터메인에서 읽어오는 보드넘으로*/}
+                                <NavLink to={`/board/detail/${row.boardnum}`}
+                                         style={{textDecoration: 'none', color: 'black'}}>
+                                    <img alt='' src={`${storage}/${row.photo}`}
+                                         style={{width: '40px', height: '40px', marginRight: '5px'}}
+                                         onError={handleError}/>
+                                    {row.subject}
+                                    &nbsp;
+                                    {row.answercount > 0 ?
+                                        <span style={{color: 'red'}}>
+                                    [{row.answercount}]
+                                </span> : ""}
+                                </NavLink>
+                            </td>
+                            <td align='center'>
+                                {row.writer}
+                            </td>
+                            <td align='center'>
+                                <span style={{fontSize: '14px'}}>{row.writeday}</span>
+                                {/*0부터 9까지 잘라내서 시간은 안나오게*/}
+                            </td>
+                            <td align='center'>
+                                {row.readcount}
+                            </td>
+                        </tr>)
                 }
                 </tbody>
             </table>
-
+            <footer>
+                <Pagenation
+                    total={boardList.length}
+                    limit={limit}
+                    page={page}
+                    setPage={setPage}
+                />
+            </footer>
         </div>
     );
 };

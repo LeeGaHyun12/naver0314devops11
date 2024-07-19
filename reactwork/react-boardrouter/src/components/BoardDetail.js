@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {useNavigate, useParams} from "react-router-dom";
+import {NavLink, useNavigate, useParams} from "react-router-dom";
 import axios from "axios";
 import {Button} from "@mui/material";
 import TextField from '@mui/material/TextField';
@@ -8,10 +8,66 @@ import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
+import InputEmojiWithRef from "react-input-emoji";
+import {EditNote, HighlightOff, UpdateTwoTone} from "@mui/icons-material";
 
 const BoardDetail = () => {
     const {boardnum}=useParams();
     const [selectData,setSelectData]=useState({});
+    const [nickname,setNickname]=useState('');
+    const [comment,setComment]=useState('');
+    const [commentList,setCommentList]=useState([]);
+    const [commentDelete,setCommentDelete]=useState('');
+
+    //댓글 입력 후 엔터 이벤트
+    const addCommentEvent=()=>{
+        alert("comment");
+        if(nickname===''){
+            alert("닉네임을 입력해주세요");
+            return;
+        }
+
+        if (comment===''){
+            alert("코멘트를 입력해주세요");
+            return;
+        }
+
+        // let url=`/boot/comment/insert?boardnum=${boardnum}&nickname=${nickname}&comment=${comment}`;
+        // axios.get(url)
+        // .then(res=>{
+        //   commentListEvent();//댓글 다시 출력
+        //   //입력값 초기화
+        //   setNickname('');
+        //   setComment('');
+        // });
+
+        axios.post("/boot/comment/insert",{boardnum,nickname,comment})
+            .then(res=>{
+                commentListEvent();//댓글 다시 출력
+                //입력값 초기화
+                setNickname('');
+                setComment('');
+            });
+    }
+
+    //댓글 출력 함수
+    const commentListEvent=()=>{
+        axios.get(`/boot/comment/list?boardnum=${boardnum}`)
+            .then(res=>{
+                setCommentList(res.data);
+            })
+    }
+
+    //댓글 삭제 함수
+    const deleteComment=(idx)=>{
+        let url=`/boot/comment/deletecomment?idx=${idx}`;
+        axios.delete(url)
+            .then(res=>{
+                alert("삭제 되었습니다");
+            });
+    }//여기 idx는 db에 있는 idx
+
+
     const storage=process.env.REACT_APP_STORAGE; //대표 사진 가져오기
     const navi=useNavigate();
     const [pass,setPass]=useState({});
@@ -32,10 +88,10 @@ const BoardDetail = () => {
                 setSelectData(res.data);
             })
     }
-
-    useEffect(() => {
+    useEffect(()=>{
         getData();
-    }, []);
+        commentListEvent();//처음 시작시 댓글 출력
+    },[]);
 
     return (
         <div style={{width:'500px',marginLeft:'30px'}}>
@@ -69,16 +125,16 @@ const BoardDetail = () => {
                 </tr>
                 <tr>
                     <td align='right'>
-                        <Button variant='outlined' color='success'
+                        <Button variant='outlined' color='warning'
                         size="small" style={{width:'80px'}}
                         onClick={()=>navi("/board/list")}><a>목록</a></Button>
-                        <Button variant='outlined' color='success'
+                        <Button variant='outlined' color='info'
                                 size="small" style={{width:'80px'}}
                                 onClick={()=>navi("/board/form")}><a>글쓰기</a></Button>
                         <Button variant='outlined' color='success'
                                 size="small" style={{width:'80px'}}
-                                onClick={()=>navi("/board/update")}><a>수정</a></Button>
-                        <Button variant='outlined' color='success'
+                                onClick={()=>navi(`/board/updatepass/${boardnum}`)}><a>수정</a></Button>
+                        <Button variant='outlined' color='error'
                                 size="small" style={{width:'80px'}}
                         onClick={handleClickOpen}><a>삭제</a></Button>
 
@@ -121,6 +177,59 @@ const BoardDetail = () => {
                                 <Button type="submit">글삭제</Button>
                             </DialogActions>
                         </Dialog>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div>
+                            {
+                                commentList && //이렇게 넣어주면 순간 이미지 불러오며 나는 에러가 안 남
+                                commentList.map((item,idx)=>
+                            <tr key={idx}>
+                                {item.nickname} :   {item.comment}
+                                <span style={{fontSize:'13px',color:'gray',marginLeft:'50px'}}>{item.writeday}</span>
+                               &nbsp;&nbsp;
+                                <EditNote style={{cursor:'pointer',color:'gray'}}
+                                onClick={()=>{
+                                    let comment=window.prompt("댓글 수정",item.comment);
+
+                                    let url=`/boot/comment/update?idx=${item.idx}&comment=${comment}`;
+                                    axios.get(url)
+                                        .then(res=>{
+                                            //수정 후 목록 다시 호출
+                                            commentListEvent();
+                                        });
+                                }}/>
+                                &nbsp;
+                                <HighlightOff style={{cursor:'pointer',color:'gray'}}
+                                              onClick={()=>{
+                                                  let a=window.confirm("댓글을 삭제할랭?-?")
+                                                  if(a){
+                                                  deleteComment(item.idx)
+                                                  }
+                                              }
+                                }/>
+
+
+                            </tr>)
+                            }
+                        </div>
+                        <hr/>
+                        <div className='input-group' style={{width: '500px'}}>
+                            {/* 댓글 입력 */}
+                            <input type='text' className='form-control'
+                                   style={{width: '120px'}} placeholder='닉네임입력'
+                                   value={nickname} onChange={(e) => setNickname(e.target.value)}/>
+                            &nbsp;&nbsp;
+                            <input type='text' className='form-control'
+                                   placeholder='댓글을 입력하세요'
+                                   value={comment} onChange={(e) => setComment(e.target.value)}
+                                   style={{width: '250px'}}/>
+                            &nbsp;&nbsp;
+                            <Button variant='contained' size="small" color='info'
+                                    onClick={addCommentEvent}><a>저장</a></Button>
+                        </div>
                     </td>
                 </tr>
                 </tbody>
