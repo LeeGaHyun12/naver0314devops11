@@ -10,6 +10,10 @@ import UpdateForm from "../components/UpdateForm";
 import UpdatePassForm from "../components/UpdatePassForm";
 import DaumPostApp from "../components/DaumPostApp";
 import SweetAlertApp from "../components/SweetAlertApp";
+import ReducerComp1 from "../components/ReducerComp1";
+import ReducerComp2 from "../components/ReducerComp2";
+import MemoTest from "../components2/MemoTest";
+import CallBackTest from "../components2/CallBackTest";
 
 const RouterMain = () => {
     return (
@@ -28,6 +32,13 @@ const RouterMain = () => {
 
                 <Route path='/post' element={<DaumPostApp/>}/>
                 <Route path='/sweet' element={<SweetAlertApp/>}/>
+
+                <Route path='/reducer1' element={<ReducerComp1/>}/>
+                <Route path='/reducer2' element={<ReducerComp2/>}/>
+
+                <Route path='/memo' element={<MemoTest/>}/>
+
+                <Route path='/callback' element={<CallBackTest/>}/>
             </Routes>
         </div>
     );
