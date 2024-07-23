@@ -31,7 +31,9 @@ const BoardList = () => {
     }, []);
 
     return (
+
         <div style={{width: '500px'}}>
+
             <Alert>
                 <b>총 {boardList.length}개의 게시글이 있슴미당</b>
             </Alert>
@@ -79,7 +81,9 @@ const BoardList = () => {
                         </tr>)
                 }
                 </tbody>
+
             </table>
+
             <footer>
                 <Pagenation
                     total={boardList.length}
